@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-
     <meta property="og:image" content="assets/acara-malam-kamis.jpg">
     <link rel="icon" href="assets/icon.png">
 
@@ -23,6 +24,7 @@
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
             color: #2d3748;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .title-font {
@@ -32,6 +34,7 @@
         .hero-section {
             height: 100vh;
             position: relative;
+            overflow: hidden;
         }
         
         h2.title-font {
@@ -58,6 +61,7 @@
             transition: all 0.3s ease;
             margin-bottom: 1.5rem;
             padding: 0.5rem;
+            overflow: hidden;
         }
         
         .gallery-item:hover {
@@ -174,18 +178,21 @@
             100% { transform: scale(3); opacity: 0; }
         }
 
-        /* 3D Card Effect */
+        /* 3D Card Effect - Mobile Optimized */
         .card-3d {
             transform-style: preserve-3d;
             transition: transform 0.5s ease, box-shadow 0.5s ease;
             transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             backface-visibility: hidden;
+            will-change: transform;
         }
 
-        .card-3d:hover {
-            transform: perspective(1000px) rotateY(5deg) rotateX(5deg) scale(1.03);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
+        @media (hover: hover) and (pointer: fine) {
+            .card-3d:hover {
+                transform: perspective(1000px) rotateY(5deg) rotateX(5deg) scale(1.03);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            }
         }
 
         /* Optimized animations */
@@ -276,6 +283,34 @@
             color: #3b82f6;
             transform: scale(1.1);
         }
+
+
+
+        /* Prevent horizontal overflow */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        section {
+            overflow: hidden;
+        }
+        
+        /* Improved parallax container */
+        .parallax-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Smoother animations */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-blue-50">
@@ -326,9 +361,9 @@
     </section>
     
     <!-- Wedding Story Section -->
-    <section id="story" class="py-20 px-4 relative z-10 bg-white bg-opacity-80">
+    <section id="story" class="py-20 px-4 relative z-10 bg-white bg-opacity-80 parallax-container">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 parallax-element" data-speed="0.1">
+            <div class="text-center mb-16 parallax-element" data-speed="0.1" data-aos="fade-up" data-aos-duration="1000">
                 <h2 class="title-font text-3xl md:text-4xl font-bold text-blue-800 mb-4">Our Love Story</h2>
                 <div class="w-24 h-1 bg-pink-400 mx-auto mb-6"></div>
                 <p class="max-w-2xl mx-auto text-gray-600 font-serif text-2xl" style="font-family: 'Reem Kufi', 'Amiri', 'Lateef', 'Scheherazade', 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;">اللَّهُمَّ بَارِكْ لَهُمَا وَبَارِكْ عَلَيْهِمَا</p>
@@ -337,7 +372,7 @@
             
             <div class="relative">
                 <!-- Siraman -->
-                <div class="timeline-item relative pl-8 pb-12 parallax-element" data-speed="0.15">
+                <div class="timeline-item relative pl-8 pb-12 parallax-element" data-speed="0.15" data-aos="fade-right" data-aos-duration="1000">
                     <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-pink-500 border-4 border-pink-200"></div>
                     <div class="bg-pink-50 p-6 rounded-xl shadow-lg card-3d">
                         <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
@@ -349,7 +384,7 @@
                 </div>
                 
                 <!-- Akad Nikah -->
-                <div class="timeline-item relative pl-8 pb-12 parallax-element" data-speed="0.2">
+                <div class="timeline-item relative pl-8 pb-12 parallax-element" data-speed="0.2" data-aos="fade-left" data-aos-duration="1000">
                     <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-pink-500 border-4 border-pink-200"></div>
                     <div class="bg-pink-50 p-6 rounded-xl shadow-lg card-3d">
                         <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
@@ -361,14 +396,14 @@
                 </div>
                 
                 <!-- Photo Session -->
-                <div class="timeline-item relative pl-8 pb-12 parallax-element" data-speed="0.25">
+                <div class="timeline-item relative pl-8 pb-12 parallax-element" data-speed="0.25" data-aos="fade-right" data-aos-duration="1000">
                     <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-pink-500 border-4 border-pink-200"></div>
                     <div class="bg-pink-50 p-6 rounded-xl shadow-lg card-3d">
                         <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                             <h3 class="title-font text-xl font-bold text-blue-800">Jumat Malam Sabtu</h3>
                             <span class="text-pink-600 font-medium">07.00 - 08:00 WIS</span>
                         </div>
-                        <p class="text-gray-600">Walimatus Urs Akbar, dihadiri oleh Masyayikh dan ribuan tamu undangan Gus Baqir.</p>
+                        <p class="text-gray-600">Walimatus Urs, dihadiri oleh Masyayikh dan ribuan tamu undangan Gus Baqir.</p>
                     </div>
                 </div>
             </div>
@@ -381,69 +416,53 @@
     </section>
     
     <!-- Gallery Section -->
-    <section id="gallery" class="py-20 px-4 relative z-10 bg-blue-50">
+    <section id="gallery" class="py-20 px-4 relative z-10 bg-blue-50 parallax-container">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12 parallax-element" data-speed="0.1">
+            <div class="text-center mb-12" data-aos="fade-up" data-aos-duration="1000">
                 <h2 class="title-font text-3xl md:text-4xl font-bold text-blue-800 mb-4" style="margin-bottom: 40px;">Wedding Gallery</h2>
                 <div class="w-24 h-1 bg-pink-400 mx-auto mb-6"></div>
                 <p class="max-w-2xl mx-auto text-gray-600"></p>
             </div>
             
-            <!-- Gallery Tabs 
-            <div style="margin-top: 40px;" class="flex justify-center mb-12 border-b border-gray-200 parallax-element" data-speed="0.15">
-                <button class="tab-btn px-8 py-4 text-lg font-medium text-gray-500 hover:text-pink-600 flex flex-col items-center" data-tab="photos">
-                    <i class="fas fa-images text-2xl mb-2"></i>
-                    <span>Photos</span>
-                </button>
-                <button class="tab-btn px-8 py-4 text-lg font-medium text-gray-500 hover:text-pink-600 flex flex-col items-center" data-tab="videos">
-                    <i class="fas fa-video text-2xl mb-2"></i>
-                    <span>Videos</span>
-                </button>
-                <button class="tab-btn px-8 py-4 text-lg font-medium text-gray-500 hover:text-pink-600 flex flex-col items-center" data-tab="moments">
-                    <i class="fas fa-heart text-2xl mb-2"></i>
-                    <span>Special Moments</span>
-                </button>
-            </div>-->
-            
             <!-- Photos Gallery -->
             <div id="photos-tab" class="gallery-tab active">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 parallax-element" data-speed="0.2">
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:rotate-1 transition-all duration-300 card-3d">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:rotate-1 transition-all duration-300 card-3d" data-aos="fade-right" data-aos-duration="1200" data-aos-easing="ease-out-cubic">
                         <img src="assets/acara-malam-kamis.jpg" alt="Wedding photo" class="w-full h-64 object-cover">
                         <div class="p-4">
                             <h3 class="font-bold text-blue-800 mb-2">Walimatul Urs Moment</h3>
                             <p class="text-gray-600 text-sm">Malam Kamis, dihadiri oleh alumni dan simpatisan muslimat.</p>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:-rotate-1 transition-all duration-300 card-3d">
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:-rotate-1 transition-all duration-300 card-3d" data-aos="fade-right" data-aos-duration="1200" data-aos-easing="ease-out-cubic" data-aos-delay="100">
                         <img src="assets/kh-rofiqi.jpg" alt="Wedding photo" class="w-full h-64 object-cover">
                         <div class="p-4">
                             <h3 class="font-bold text-blue-800 mb-2">KH. Rofiqi Family</h3>
                             <p class="text-gray-600 text-sm">Foto bersama majelis keluarga KH. Rofiqi Mahfudz</p>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:rotate-1 transition-all duration-300 card-3d">
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:rotate-1 transition-all duration-300 card-3d" data-aos="fade-right" data-aos-duration="1200" data-aos-easing="ease-out-cubic" data-aos-delay="200">
                         <img src="assets/majelis-keluarga.jpg" alt="Wedding photo" class="w-full h-64 object-cover">
                         <div class="p-4">
                             <h3 class="font-bold text-blue-800 mb-2">Family Portrait</h3>
                             <p class="text-gray-600 text-sm">Bersama majelis keluarga Pesatren Salafiyah Al-Utsmani</p>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:-rotate-1 transition-all duration-300 card-3d">
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:-rotate-1 transition-all duration-300 card-3d" data-aos="fade-right" data-aos-duration="1200" data-aos-easing="ease-out-cubic" data-aos-delay="300">
                         <img src="assets/dewan-asatidzah.jpg" alt="Wedding photo" class="w-full h-64 object-cover">
                         <div class="p-4">
                             <h3 class="font-bold text-blue-800 mb-2">Asatidzah</h3>
                             <p class="text-gray-600 text-sm">Foto dengan dewan asatidzah Banat Pesantren Salafiyah Al-Utsmani</p>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:rotate-1 transition-all duration-300 card-3d">
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:rotate-1 transition-all duration-300 card-3d" data-aos="fade-right" data-aos-duration="1200" data-aos-easing="ease-out-cubic" data-aos-delay="400">
                         <img src="assets/pasustren.jpg" alt="Wedding photo" class="w-full h-64 object-cover">
                         <div class="p-4">
                             <h3 class="font-bold text-blue-800 mb-2">Pasustren</h3>
                             <p class="text-gray-600 text-sm">Pasukan Khusus Pesantren yang selalu siap siaga mengamankan acara</p>
                         </div>
                     </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:-rotate-1 transition-all duration-300 card-3d">
+                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white transform hover:-rotate-1 transition-all duration-300 card-3d" data-aos="fade-right" data-aos-duration="1200" data-aos-easing="ease-out-cubic" data-aos-delay="500">
                         <img src="assets/kru.jpg" alt="Wedding photo" class="w-full h-64 object-cover">
                         <div class="p-4">
                             <h3 class="font-bold text-blue-800 mb-2">Kru Beddian Media</h3>
@@ -452,122 +471,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Videos Gallery 
-            <div id="videos-tab" class="gallery-tab hidden">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white video-thumbnail cursor-pointer card-3d" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                        <video controls autoplay>
-                            <source src="assets/pengiringan-pengantin.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">Wedding Highlights</h3>
-                            <p class="text-gray-600 text-sm">Our wedding day summary</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white video-thumbnail cursor-pointer card-3d" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                        <video controls autoplay>
-                            <source src="assets/pengiringan-pengantin.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">Gus Baqir & Ning Imah</h3>
-                            <p class="text-gray-600 text-sm">Complete marriage ceremony</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white video-thumbnail cursor-pointer card-3d" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                        <video controls autoplay>
-                            <source src="https://i.ibb.co/0jq6YzL/video3.jpg" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">Siraman Ceremony</h3>
-                            <p class="text-gray-600 text-sm">8:15 min • Traditional Javanese ritual</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white video-thumbnail cursor-pointer card-3d" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                        <video controls autoplay>
-                            <source src="https://i.ibb.co/0jq6YzL/video4.jpg" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">Reception Moments</h3>
-                            <p class="text-gray-600 text-sm">6:22 min • Celebrating with guests</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white video-thumbnail cursor-pointer card-3d" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                        <video controls autoplay>
-                            <source src="https://i.ibb.co/0jq6YzL/video5.jpg" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">Couple Interview</h3>
-                            <p class="text-gray-600 text-sm">4:56 min • Our thoughts on wedding day</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white video-thumbnail cursor-pointer card-3d" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                        <video controls autoplay>
-                            <source src="https://i.ibb.co/0jq6YzL/video6.jpg" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">Guest Messages</h3>
-                            <p class="text-gray-600 text-sm">7:18 min • Wishes from family & friends</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
-            <!-- Special Moments Gallery 
-            <div id="moments-tab" class="gallery-tab hidden">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white card-3d">
-                        <img src="https://i.ibb.co/0jq6YzL/moment1.jpg" alt="Special moment" class="w-full h-64 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">First Kiss</h3>
-                            <p class="text-gray-600 text-sm">Our first kiss as husband and wife</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white card-3d">
-                        <img src="https://i.ibb.co/0jq6YzL/moment2.jpg" alt="Special moment" class="w-full h-64 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">Cake Cutting</h3>
-                            <p class="text-gray-600 text-sm">Sweet moment cutting our wedding cake</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white card-3d">
-                        <img src="https://i.ibb.co/0jq6YzL/moment3.jpg" alt="Special moment" class="w-full h-64 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">Parent's Blessing</h3>
-                            <p class="text-gray-600 text-sm">Emotional moment with our parents</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white card-3d">
-                        <img src="https://i.ibb.co/0jq6YzL/moment4.jpg" alt="Special moment" class="w-full h-64 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">Bride's Entrance</h3>
-                            <p class="text-gray-600 text-sm">Ning Imah's grand entrance</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white card-3d">
-                        <img src="https://i.ibb.co/0jq6YzL/moment5.jpg" alt="Special moment" class="w-full h-64 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">Groom's Reaction</h3>
-                            <p class="text-gray-600 text-sm">Gus Baqir seeing his bride for the first time</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item rounded-xl overflow-hidden shadow-md bg-white card-3d">
-                        <img src="https://i.ibb.co/0jq6YzL/moment6.jpg" alt="Special moment" class="w-full h-64 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-blue-800 mb-2">Final Dance</h3>
-                            <p class="text-gray-600 text-sm">Our last dance as the reception ended</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
--->
-
         </div>
     </section>
     
@@ -607,7 +510,7 @@
     <!-- Floating Music Player -->
     <div class="fixed bottom-12 left-6 bg-white p-3 rounded-full shadow-xl z-50 cursor-pointer hover:bg-pink-100 transition-colors duration-300">
         <i class="fas fa-music text-pink-600 text-xl"></i>
-        <audio id="wedding-music" loop autoplay>
+        <audio id="wedding-music" loop>
             <source src="audio/penjaga-hati.mp3" type="audio/mpeg">
         </audio>
     </div>
@@ -615,6 +518,18 @@
     <script>
         // Optimized JavaScript for better performance
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                once: false,
+                disable: false,
+                duration: 1200,
+                easing: 'ease-out-cubic',
+                offset: 50,
+                delay: 0,
+                mirror: true,
+                anchorPlacement: 'top-center'
+            });
+
             // Initialize Vanta.js background with optimized settings
             const vantaEffect = VANTA.NET({
                 el: "#vanta-bg",
@@ -633,144 +548,143 @@
                 showDots: false
             });
 
-            // Create optimized floating hearts
-            function createHearts() {
-                const container = document.getElementById('hearts-container');
-                const heartCount = 8; // Reduced number for better performance
-                
-                // Pre-create heart elements
-                const heartHTML = Array.from({length: heartCount}, () => 
-                    `<div class="heart" style="
-                        left: ${Math.random() * 100}%;
-                        top: ${Math.random() * 100}%;
-                        font-size: ${0.5 + Math.random() * 1.5}rem;
-                        animation: float-heart ${5 + Math.random() * 10}s linear infinite ${Math.random() * 5}s;
-                    ">
-                        <i class="fas fa-heart text-pink-400"></i>
-                    </div>`
-                ).join('');
-                
-                container.innerHTML = heartHTML;
-            }
-
-            // Create optimized love bubbles
-            function createLoveBubbles() {
-                const container = document.getElementById('love-bubbles');
-                const bubbleCount = 15; // Reduced number for better performance
-                
-                // Pre-create bubble elements
-                const bubbleHTML = Array.from({length: bubbleCount}, () => 
-                    `<div class="love-bubble" style="
-                        left: ${Math.random() * 100}%;
-                        width: ${5 + Math.random() * 15}px;
-                        height: ${5 + Math.random() * 15}px;
-                        animation: bubble-float ${5 + Math.random() * 15}s linear infinite ${Math.random() * 10}s;
-                    "></div>`
-                ).join('');
-                
-                container.innerHTML = bubbleHTML;
-            }
-
-            // Create optimized ring sparkles
-            function createRingSparkles() {
-                const container = document.getElementById('ring-sparkles');
-                const sparkleCount = 8; // Reduced number for better performance
-                
-                // Pre-create sparkle elements
-                const sparkleHTML = Array.from({length: sparkleCount}, (_, i) => {
-                    const angle = (i / sparkleCount) * Math.PI * 2;
-                    const radius = 40;
-                    const x = Math.cos(angle) * radius;
-                    const y = Math.sin(angle) * radius;
-                    const delay = Math.random() * 2;
+            // Only create animations if not on mobile
+            if (window.innerWidth > 768) {
+                // Create optimized floating hearts
+                function createHearts() {
+                    const container = document.getElementById('hearts-container');
+                    const heartCount = 8; // Reduced number for better performance
                     
-                    return `<div class="ring-particle" style="
-                        left: ${x}px;
-                        top: ${y}px;
-                        animation-delay: ${delay}s;
-                    "></div>`;
-                }).join('');
-                
-                container.innerHTML = sparkleHTML;
+                    // Pre-create heart elements
+                    const heartHTML = Array.from({length: heartCount}, () => 
+                        `<div class="heart" style="
+                            left: ${Math.random() * 100}%;
+                            top: ${Math.random() * 100}%;
+                            font-size: ${0.5 + Math.random() * 1.5}rem;
+                            animation: float-heart ${5 + Math.random() * 10}s linear infinite ${Math.random() * 5}s;
+                        ">
+                            <i class="fas fa-heart text-pink-400"></i>
+                        </div>`
+                    ).join('');
+                    
+                    container.innerHTML = heartHTML;
+                }
+
+                // Create optimized love bubbles
+                function createLoveBubbles() {
+                    const container = document.getElementById('love-bubbles');
+                    const bubbleCount = 15; // Reduced number for better performance
+                    
+                    // Pre-create bubble elements
+                    const bubbleHTML = Array.from({length: bubbleCount}, () => 
+                        `<div class="love-bubble" style="
+                            left: ${Math.random() * 100}%;
+                            width: ${5 + Math.random() * 15}px;
+                            height: ${5 + Math.random() * 15}px;
+                            animation: bubble-float ${5 + Math.random() * 15}s linear infinite ${Math.random() * 10}s;
+                        "></div>`
+                    ).join('');
+                    
+                    container.innerHTML = bubbleHTML;
+                }
+
+                // Create optimized ring sparkles
+                function createRingSparkles() {
+                    const container = document.getElementById('ring-sparkles');
+                    const sparkleCount = 8; // Reduced number for better performance
+                    
+                    // Pre-create sparkle elements
+                    const sparkleHTML = Array.from({length: sparkleCount}, (_, i) => {
+                        const angle = (i / sparkleCount) * Math.PI * 2;
+                        const radius = 40;
+                        const x = Math.cos(angle) * radius;
+                        const y = Math.sin(angle) * radius;
+                        const delay = Math.random() * 2;
+                        
+                        return `<div class="ring-particle" style="
+                            left: ${x}px;
+                            top: ${y}px;
+                            animation-delay: ${delay}s;
+                        "></div>`;
+                    }).join('');
+                    
+                    container.innerHTML = sparkleHTML;
+                }
+
+                // Create romantic lights
+                function createRomanticLights() {
+                    const container = document.getElementById('romantic-lights');
+                    const lightCount = 3;
+                    
+                    // Pre-create light elements
+                    const lightHTML = Array.from({length: lightCount}, () => 
+                        `<div class="romantic-light" style="
+                            left: ${Math.random() * 100}%;
+                            top: ${Math.random() * 100}%;
+                            opacity: ${0.3 + Math.random() * 0.7};
+                            transform: scale(${0.5 + Math.random()});
+                        "></div>`
+                    ).join('');
+                    
+                    container.innerHTML = lightHTML;
+                }
+
+                // Initialize all elements
+                createHearts();
+                createLoveBubbles();
+                createRingSparkles();
+                createRomanticLights();
             }
 
-            // Create romantic lights
-            function createRomanticLights() {
-                const container = document.getElementById('romantic-lights');
-                const lightCount = 3;
+            // Improved parallax effect
+            function setupParallax() {
+                if (window.innerWidth <= 768) return; // Disable on mobile
                 
-                // Pre-create light elements
-                const lightHTML = Array.from({length: lightCount}, () => 
-                    `<div class="romantic-light" style="
-                        left: ${Math.random() * 100}%;
-                        top: ${Math.random() * 100}%;
-                        opacity: ${0.3 + Math.random() * 0.7};
-                        transform: scale(${0.5 + Math.random()});
-                    "></div>`
-                ).join('');
+                const elements = document.querySelectorAll('.parallax-element');
+                let ticking = false;
                 
-                container.innerHTML = lightHTML;
+                function updateParallax() {
+                    const scrollPosition = window.pageYOffset;
+                    
+                    elements.forEach(element => {
+                        const speed = parseFloat(element.getAttribute('data-speed')) || 0.1;
+                        const yPos = -(scrollPosition * speed);
+                        element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                    });
+                    
+                    ticking = false;
+                }
+                
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        window.requestAnimationFrame(updateParallax);
+                        ticking = true;
+                    }
+                }, {passive: true});
             }
 
-            // Gallery Tabs with event delegation
-            document.addEventListener('DOMContentLoaded', function() {
-                // Set tab aktif pertama kali
-                const firstTab = document.querySelector('.tab-btn');
-                const firstTabId = firstTab.getAttribute('data-tab') + '-tab';
-                firstTab.classList.add('tab-active');
-                document.getElementById(firstTabId).classList.remove('hidden');
-
-                // Gallery Tabs handler
-                document.addEventListener('click', function(e) {
-                    if (e.target.closest('.tab-btn')) {
-                        const tabBtn = e.target.closest('.tab-btn');
-                        const tabId = tabBtn.getAttribute('data-tab') + '-tab';
-                        
-                        // Remove active class from all buttons and tabs
-                        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('tab-active'));
-                        document.querySelectorAll('.gallery-tab').forEach(tab => tab.classList.add('hidden'));
-                        
-                        // Add active class to clicked button
-                        tabBtn.classList.add('tab-active');
-                        
-                        // Show corresponding tab
-                        document.getElementById(tabId).classList.remove('hidden');
-                    }
-                });
-
-                // Video thumbnail click
-                document.addEventListener('click', function(e) {
-                    if (e.target.closest('.video-thumbnail')) {
-                        const thumbnail = e.target.closest('.video-thumbnail');
-                        const videoUrl = thumbnail.getAttribute('data-video') + '?autoplay=1';
-                        
-                        document.getElementById('video-frame').setAttribute('src', videoUrl);
-                        document.getElementById('video-modal').classList.remove('hidden');
-                        document.body.style.overflow = 'hidden';
-                    }
-                });
-
-                // Close video modal
-                document.addEventListener('click', function(e) {
-                    if (e.target.matches('#close-video, #close-video *')) {
-                        document.getElementById('video-frame').setAttribute('src', '');
-                        document.getElementById('video-modal').classList.add('hidden');
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-            });
+            // Initialize parallax
+            setupParallax();
 
             // Music player
             const musicPlayer = document.querySelector('.fa-music').parentElement;
             const audio = document.getElementById('wedding-music');
             let isPlaying = false;
             
+            // Try to autoplay music (may be blocked by browser)
+            audio.play().then(() => {
+                isPlaying = true;
+                musicPlayer.innerHTML = '<i class="fas fa-pause text-pink-600 text-xl"></i>';
+            }).catch(e => {
+                console.log('Autoplay prevented:', e);
+            });
+            
             musicPlayer.addEventListener('click', function() {
                 if (isPlaying) {
                     audio.pause();
                     musicPlayer.innerHTML = '<i class="fas fa-music text-pink-600 text-xl"></i>';
                 } else {
-                    audio.play().catch(e => console.log('Autoplay prevented:', e));
+                    audio.play().catch(e => console.log('Play prevented:', e));
                     musicPlayer.innerHTML = '<i class="fas fa-pause text-pink-600 text-xl"></i>';
                 }
                 isPlaying = !isPlaying;
@@ -786,13 +700,6 @@
                     });
                 });
             });
-
-            // Initialize all elements
-            createHearts();
-            createLoveBubbles();
-            createRingSparkles();
-            createRomanticLights();
-            setupParallax();
 
             // Clean up Vanta.js on unmount
             window.addEventListener('beforeunload', function() {
@@ -811,31 +718,6 @@
                 // Handle resize if needed
             }, 250);
         });
-
-        // Optimized parallax effect with requestAnimationFrame
-        function setupParallax() {
-            const elements = document.querySelectorAll('.parallax-element');
-            let ticking = false;
-            
-            function updateParallax() {
-                const scrollPosition = window.pageYOffset;
-                
-                elements.forEach(element => {
-                    const speed = parseFloat(element.getAttribute('data-speed')) || 0.1;
-                    const yPos = -(scrollPosition * speed);
-                    element.style.transform = `translate3d(0, ${yPos}px, 0)`;
-                });
-                
-                ticking = false;
-            }
-            
-            window.addEventListener('scroll', function() {
-                if (!ticking) {
-                    window.requestAnimationFrame(updateParallax);
-                    ticking = true;
-                }
-            }, {passive: true});
-        }
     </script>
 </body>
 </html>
