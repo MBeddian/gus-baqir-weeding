@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +40,6 @@
             line-height: 1.6;
         }
 
-
         .floating {
             animation: floating 3s ease-in-out infinite;
         }
@@ -54,6 +52,8 @@
         
         .gallery-item {
             transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem;
         }
         
         .gallery-item:hover {
@@ -106,18 +106,21 @@
             background: #e2e8f0;
         }
 
-        /* Enhanced Romantic Elements */
+        /* Optimized Romantic Elements */
         .heart {
             position: absolute;
             pointer-events: none;
             z-index: 5;
             will-change: transform, opacity;
             filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.7));
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         .parallax-element {
-            transition: transform 0.3s ease-out;
+            transition: transform 0.1s linear;
             will-change: transform;
+            transform: translateZ(0);
         }
 
         .love-bubble {
@@ -128,6 +131,7 @@
             z-index: 1;
             will-change: transform, opacity;
             box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
+            transform: translateZ(0);
         }
 
         @keyframes bubble-float {
@@ -146,6 +150,7 @@
             pointer-events: none;
             z-index: 10;
             overflow: hidden;
+            transform: translateZ(0);
         }
 
         .ring-particle {
@@ -157,6 +162,7 @@
             box-shadow: 0 0 10px gold, 0 0 20px gold;
             animation: ring-sparkle 2s ease-out infinite;
             will-change: transform, opacity;
+            transform: translateZ(0);
         }
 
         @keyframes ring-sparkle {
@@ -170,20 +176,12 @@
             transition: transform 0.5s ease, box-shadow 0.5s ease;
             transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            backface-visibility: hidden;
         }
 
         .card-3d:hover {
             transform: perspective(1000px) rotateY(5deg) rotateX(5deg) scale(1.03);
             box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Floating Petals */
-        .petal {
-            position: absolute;
-            background-size: contain;
-            background-repeat: no-repeat;
-            will-change: transform, opacity;
-            filter: drop-shadow(0 0 5px rgba(255, 192, 203, 0.7));
         }
 
         /* Optimized animations */
@@ -202,6 +200,78 @@
             backface-visibility: hidden;
             transform: translate3d(0,0,0);
         }
+
+        /* New Romantic Elements */
+        .heart-path {
+            animation: heart-beat 1.5s ease-in-out infinite;
+            transform-origin: center;
+            transform-box: fill-box;
+        }
+
+        @keyframes heart-beat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
+        .romantic-light {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,105,180,0.2) 0%, rgba(255,105,180,0) 70%);
+            filter: blur(10px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .gallery-tab {
+            padding: 1rem 0;
+        }
+
+        .gallery-tab.active {
+            display: block;
+        }
+
+        .gallery-tab.hidden {
+            display: none;
+        }
+
+        .tab-btn {
+            position: relative;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            margin: 0 0.5rem;
+        }
+
+        .tab-btn.tab-active {
+            background-color: #f3f4f6;
+            color: #3b82f6;
+            font-weight: 600;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .tab-btn:hover {
+            color: #3b82f6;
+            transform: translateY(-2px);
+            background-color: #f3f4f6;
+        }
+
+        .tab-btn i {
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover i {
+            transform: scale(1.1);
+        }
+
+        .tab-btn.tab-active i {
+            color: #3b82f6;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body class="bg-blue-50">
@@ -210,6 +280,9 @@
     
     <!-- Floating Hearts Container -->
     <div class="floating-hearts" id="hearts-container"></div>
+    
+    <!-- Romantic Lights -->
+    <div id="romantic-lights"></div>
     
     <!-- Hero Section -->
     <section class="hero-section flex items-center justify-center relative z-10">
@@ -220,7 +293,11 @@
                 <p class="text-blue-100 text-lg md:text-xl mb-2">Wedding Documentation of</p>
                 <h1 class="title-font text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
                     <span class="inline-block floating">Gus Baqir</span> 
-                    <span class="text-pink-300 mx-4">&</span> 
+                    <span class="text-pink-300 mx-4">
+                        <svg class="inline-block w-10 h-10 md:w-16 md:h-16" viewBox="0 0 24 24" fill="currentColor">
+                            <path class="heart-path" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff69b4"/>
+                        </svg>
+                    </span> 
                     <span class="inline-block floating" style="animation-delay: 0.5s;">Ning Imah</span>
                 </h1>
                 <p class="text-blue-100 text-lg md:text-xl">18 Dzul Qo'dah 1446 H / 16 Mei 2025</p>
@@ -302,16 +379,25 @@
     <section id="gallery" class="py-20 px-4 relative z-10 bg-blue-50">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12 parallax-element" data-speed="0.1">
-                <h2 class="title-font text-3xl md:text-4xl font-bold text-blue-800 mb-4">Our Wedding Gallery</h2>
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-blue-800 mb-4" style="margin-bottom: 40px;">Wedding Gallery</h2>
                 <div class="w-24 h-1 bg-pink-400 mx-auto mb-6"></div>
-                <p class="max-w-2xl mx-auto text-gray-600">Relive the beautiful moments from our special day</p>
+                <p class="max-w-2xl mx-auto text-gray-600"></p>
             </div>
             
             <!-- Gallery Tabs -->
-            <div class="flex justify-center mb-12 border-b border-gray-200 parallax-element" data-speed="0.15">
-                <button class="tab-btn px-6 py-3 text-lg font-medium text-gray-500 hover:text-pink-600" data-tab="photos">Photos</button>
-                <button class="tab-btn px-6 py-3 text-lg font-medium text-gray-500 hover:text-pink-600" data-tab="videos">Videos</button>
-                <button class="tab-btn px-6 py-3 text-lg font-medium text-gray-500 hover:text-pink-600" data-tab="moments">Special Moments</button>
+            <div style="margin-top: 40px;" class="flex justify-center mb-12 border-b border-gray-200 parallax-element" data-speed="0.15">
+                <button class="tab-btn px-8 py-4 text-lg font-medium text-gray-500 hover:text-pink-600 flex flex-col items-center" data-tab="photos">
+                    <i class="fas fa-images text-2xl mb-2"></i>
+                    <span>Photos</span>
+                </button>
+                <button class="tab-btn px-8 py-4 text-lg font-medium text-gray-500 hover:text-pink-600 flex flex-col items-center" data-tab="videos">
+                    <i class="fas fa-video text-2xl mb-2"></i>
+                    <span>Videos</span>
+                </button>
+                <button class="tab-btn px-8 py-4 text-lg font-medium text-gray-500 hover:text-pink-600 flex flex-col items-center" data-tab="moments">
+                    <i class="fas fa-heart text-2xl mb-2"></i>
+                    <span>Special Moments</span>
+                </button>
             </div>
             
             <!-- Photos Gallery -->
@@ -520,206 +606,229 @@
     </div>
     
     <script>
-        // Initialize Vanta.js background with romantic settings
-        VANTA.NET({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0xff69b4, // Pink color
-            backgroundColor: 0x1e103a, // Dark purple
-            points: 16.00, // More points for denser network
-            maxDistance: 18.00,
-            spacing: 15.00,
-            showDots: false
-        });
+        // Optimized JavaScript for better performance
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Vanta.js background with optimized settings
+            const vantaEffect = VANTA.NET({
+                el: "#vanta-bg",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0xff69b4,
+                backgroundColor: 0x1e103a,
+                points: 12.00, // Reduced for better performance
+                maxDistance: 18.00,
+                spacing: 15.00,
+                showDots: false
+            });
 
-        // Create floating hearts
-        function createHearts() {
-            const container = document.getElementById('hearts-container');
-            const heartCount = 15;
-            
-            for (let i = 0; i < heartCount; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.innerHTML = '<i class="fas fa-heart text-pink-400"></i>';
+            // Create optimized floating hearts
+            function createHearts() {
+                const container = document.getElementById('hearts-container');
+                const heartCount = 8; // Reduced number for better performance
                 
-                // Random position
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
+                // Pre-create heart elements
+                const heartHTML = Array.from({length: heartCount}, () => 
+                    `<div class="heart" style="
+                        left: ${Math.random() * 100}%;
+                        top: ${Math.random() * 100}%;
+                        font-size: ${0.5 + Math.random() * 1.5}rem;
+                        animation: float-heart ${5 + Math.random() * 10}s linear infinite ${Math.random() * 5}s;
+                    ">
+                        <i class="fas fa-heart text-pink-400"></i>
+                    </div>`
+                ).join('');
                 
-                // Random size
-                const size = 0.5 + Math.random() * 1.5;
-                
-                // Random animation duration
-                const duration = 5 + Math.random() * 10;
-                
-                // Random delay
-                const delay = Math.random() * 5;
-                
-                heart.style.left = `${left}%`;
-                heart.style.top = `${top}%`;
-                heart.style.fontSize = `${size}rem`;
-                heart.style.animationDuration = `${duration}s`;
-                heart.style.animationDelay = `${delay}s`;
-                
-                container.appendChild(heart);
+                container.innerHTML = heartHTML;
             }
-        }
 
-        // Create love bubbles
-        function createLoveBubbles() {
-            const container = document.getElementById('love-bubbles');
-            const bubbleCount = 20;
-            
-            for (let i = 0; i < bubbleCount; i++) {
-                const bubble = document.createElement('div');
-                bubble.className = 'love-bubble';
+            // Create optimized love bubbles
+            function createLoveBubbles() {
+                const container = document.getElementById('love-bubbles');
+                const bubbleCount = 15; // Reduced number for better performance
                 
-                // Random position
-                const left = Math.random() * 100;
+                // Pre-create bubble elements
+                const bubbleHTML = Array.from({length: bubbleCount}, () => 
+                    `<div class="love-bubble" style="
+                        left: ${Math.random() * 100}%;
+                        width: ${5 + Math.random() * 15}px;
+                        height: ${5 + Math.random() * 15}px;
+                        animation: bubble-float ${5 + Math.random() * 15}s linear infinite ${Math.random() * 10}s;
+                    "></div>`
+                ).join('');
                 
-                // Random size
-                const size = 5 + Math.random() * 15;
-                
-                // Random animation duration
-                const duration = 5 + Math.random() * 15;
-                
-                // Random delay
-                const delay = Math.random() * 10;
-                
-                bubble.style.left = `${left}%`;
-                bubble.style.width = `${size}px`;
-                bubble.style.height = `${size}px`;
-                bubble.style.animationDuration = `${duration}s`;
-                bubble.style.animationDelay = `${delay}s`;
-                
-                container.appendChild(bubble);
+                container.innerHTML = bubbleHTML;
             }
-        }
 
-        // Create ring sparkles
-        function createRingSparkles() {
-            const container = document.getElementById('ring-sparkles');
-            const sparkleCount = 12;
-            
-            for (let i = 0; i < sparkleCount; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'ring-particle';
+            // Create optimized ring sparkles
+            function createRingSparkles() {
+                const container = document.getElementById('ring-sparkles');
+                const sparkleCount = 8; // Reduced number for better performance
                 
-                // Position in a circle
-                const angle = (i / sparkleCount) * Math.PI * 2;
-                const radius = 40;
-                const x = Math.cos(angle) * radius;
-                const y = Math.sin(angle) * radius;
+                // Pre-create sparkle elements
+                const sparkleHTML = Array.from({length: sparkleCount}, (_, i) => {
+                    const angle = (i / sparkleCount) * Math.PI * 2;
+                    const radius = 40;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+                    const delay = Math.random() * 2;
+                    
+                    return `<div class="ring-particle" style="
+                        left: ${x}px;
+                        top: ${y}px;
+                        animation-delay: ${delay}s;
+                    "></div>`;
+                }).join('');
                 
-                // Random animation delay
-                const delay = Math.random() * 2;
-                
-                sparkle.style.left = `${x}px`;
-                sparkle.style.top = `${y}px`;
-                sparkle.style.animationDelay = `${delay}s`;
-                
-                container.appendChild(sparkle);
+                container.innerHTML = sparkleHTML;
             }
-        }
 
-        // Parallax effect
-        function setupParallax() {
-            const elements = document.querySelectorAll('.parallax-element');
-            
-            window.addEventListener('scroll', function() {
-                const scrollPosition = window.pageYOffset;
+            // Create romantic lights
+            function createRomanticLights() {
+                const container = document.getElementById('romantic-lights');
+                const lightCount = 3;
                 
-                elements.forEach(element => {
-                    const speed = parseFloat(element.getAttribute('data-speed'));
-                    const yPos = -(scrollPosition * speed);
-                    element.style.transform = `translateY(${yPos}px)`;
+                // Pre-create light elements
+                const lightHTML = Array.from({length: lightCount}, () => 
+                    `<div class="romantic-light" style="
+                        left: ${Math.random() * 100}%;
+                        top: ${Math.random() * 100}%;
+                        opacity: ${0.3 + Math.random() * 0.7};
+                        transform: scale(${0.5 + Math.random()});
+                    "></div>`
+                ).join('');
+                
+                container.innerHTML = lightHTML;
+            }
+
+            // Gallery Tabs with event delegation
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set tab aktif pertama kali
+                const firstTab = document.querySelector('.tab-btn');
+                const firstTabId = firstTab.getAttribute('data-tab') + '-tab';
+                firstTab.classList.add('tab-active');
+                document.getElementById(firstTabId).classList.remove('hidden');
+
+                // Gallery Tabs handler
+                document.addEventListener('click', function(e) {
+                    if (e.target.closest('.tab-btn')) {
+                        const tabBtn = e.target.closest('.tab-btn');
+                        const tabId = tabBtn.getAttribute('data-tab') + '-tab';
+                        
+                        // Remove active class from all buttons and tabs
+                        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('tab-active'));
+                        document.querySelectorAll('.gallery-tab').forEach(tab => tab.classList.add('hidden'));
+                        
+                        // Add active class to clicked button
+                        tabBtn.classList.add('tab-active');
+                        
+                        // Show corresponding tab
+                        document.getElementById(tabId).classList.remove('hidden');
+                    }
+                });
+
+                // Video thumbnail click
+                document.addEventListener('click', function(e) {
+                    if (e.target.closest('.video-thumbnail')) {
+                        const thumbnail = e.target.closest('.video-thumbnail');
+                        const videoUrl = thumbnail.getAttribute('data-video') + '?autoplay=1';
+                        
+                        document.getElementById('video-frame').setAttribute('src', videoUrl);
+                        document.getElementById('video-modal').classList.remove('hidden');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+
+                // Close video modal
+                document.addEventListener('click', function(e) {
+                    if (e.target.matches('#close-video, #close-video *')) {
+                        document.getElementById('video-frame').setAttribute('src', '');
+                        document.getElementById('video-modal').classList.add('hidden');
+                        document.body.style.overflow = 'auto';
+                    }
                 });
             });
-        }
 
-        // Gallery Tabs
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const galleryTabs = document.querySelectorAll('.gallery-tab');
-        
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all buttons and tabs
-                tabBtns.forEach(b => b.classList.remove('tab-active'));
-                galleryTabs.forEach(tab => tab.classList.add('hidden'));
-                
-                // Add active class to clicked button
-                this.classList.add('tab-active');
-                
-                // Show corresponding tab
-                const tabId = this.getAttribute('data-tab') + '-tab';
-                document.getElementById(tabId).classList.remove('hidden');
+            // Music player
+            const musicPlayer = document.querySelector('.fa-music').parentElement;
+            const audio = document.getElementById('wedding-music');
+            let isPlaying = false;
+            
+            musicPlayer.addEventListener('click', function() {
+                if (isPlaying) {
+                    audio.pause();
+                    musicPlayer.innerHTML = '<i class="fas fa-music text-pink-600 text-xl"></i>';
+                } else {
+                    audio.play().catch(e => console.log('Autoplay prevented:', e));
+                    musicPlayer.innerHTML = '<i class="fas fa-pause text-pink-600 text-xl"></i>';
+                }
+                isPlaying = !isPlaying;
             });
-        });
-        
-        // Set first tab as active by default
-        tabBtns[0].classList.add('tab-active');
-        
-        // Video Modal
-        const videoThumbnails = document.querySelectorAll('.video-thumbnail');
-        const videoModal = document.getElementById('video-modal');
-        const videoFrame = document.getElementById('video-frame');
-        const closeVideo = document.getElementById('close-video');
-        
-        videoThumbnails.forEach(thumb => {
-            thumb.addEventListener('click', function() {
-                const videoUrl = this.getAttribute('data-video') + '?autoplay=1';
-                videoFrame.setAttribute('src', videoUrl);
-                videoModal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        closeVideo.addEventListener('click', function() {
-            videoFrame.setAttribute('src', '');
-            videoModal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        });
-        
-        // Music player
-        const musicPlayer = document.querySelector('.fa-music').parentElement;
-        const audio = document.getElementById('wedding-music');
-        let isPlaying = false;
-        
-        musicPlayer.addEventListener('click', function() {
-            if (isPlaying) {
-                audio.pause();
-                musicPlayer.innerHTML = '<i class="fas fa-music text-pink-600 text-xl"></i>';
-            } else {
-                audio.play();
-                musicPlayer.innerHTML = '<i class="fas fa-pause text-pink-600 text-xl"></i>';
-            }
-            isPlaying = !isPlaying;
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
             });
-        });
 
-        // Initialize romantic elements
-        window.addEventListener('load', function() {
+            // Initialize all elements
             createHearts();
             createLoveBubbles();
             createRingSparkles();
+            createRomanticLights();
             setupParallax();
+
+            // Clean up Vanta.js on unmount
+            window.addEventListener('beforeunload', function() {
+                if (vantaEffect) {
+                    vantaEffect.destroy();
+                }
+            });
         });
+
+        // Performance optimization - reduce layout thrashing
+        window.addEventListener('resize', function() {
+            // Debounce resize events
+            let resizeTimer;
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // Handle resize if needed
+            }, 250);
+        });
+
+        // Optimized parallax effect with requestAnimationFrame
+        function setupParallax() {
+            const elements = document.querySelectorAll('.parallax-element');
+            let ticking = false;
+            
+            function updateParallax() {
+                const scrollPosition = window.pageYOffset;
+                
+                elements.forEach(element => {
+                    const speed = parseFloat(element.getAttribute('data-speed')) || 0.1;
+                    const yPos = -(scrollPosition * speed);
+                    element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+                });
+                
+                ticking = false;
+            }
+            
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }, {passive: true});
+        }
     </script>
 </body>
 </html>
